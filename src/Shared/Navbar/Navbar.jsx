@@ -7,12 +7,14 @@ const Navbar = () => {
     const navMenu = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/menu">Our Menu</Link></li>
+        <li><Link to="/shop/salad">Our Shop</Link></li>
+        <li><Link to="/signUp">Register</Link></li>
     </>
     const [navSize, setnavSize] = useState("10rem");
     const [navColor, setnavColor] = useState("transparent");
 
     const listenScrollEvent = () => {
-        window.scrollY > 10 ? setnavColor("rgba(51, 51, 50, 0.5)") : setnavColor("transparent");
+        window.scrollY > 10 ? setnavColor("rgba(51, 51, 50, 0.5)") : setnavColor("rgba(51, 51, 50, 0.5)");
         window.scrollY > 10 ? setnavSize("5rem") : setnavSize("5rem");
     };
     useEffect(() => {
