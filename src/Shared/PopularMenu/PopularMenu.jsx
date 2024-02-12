@@ -9,7 +9,7 @@ const PopularMenu = ({ item }) => {
                 <h2 className="text-xl font-medium">{name}------------------</h2>
                 <p>{recipe}</p>
             </div>
-            <p className="ml-5 text-orange-600 font-bold">{price}</p>
+            <p className="ml-5 text-orange-600 font-bold">${price}</p>
         </div>
     );
 };

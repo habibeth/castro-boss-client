@@ -6,7 +6,7 @@ import useMenu from "../../../hook/useMenu";
 const PopularItems = () => {
     const [items] = useMenu();
     const popularItems = items?.filter(item=> item.category === "popular")
-    console.log(popularItems)
+    // console.log(popularItems)
     return (
         <div className="max-w-6xl mx-auto my-10">
             <BannerTitle heading={"FROM OUR MENU"} subHeading={"Check it out"}></BannerTitle>
