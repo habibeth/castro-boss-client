@@ -1,16 +1,16 @@
 import Swal from 'sweetalert2';
-import useAuth from '../../hook/useAuth'
-import useAxiosPublic from '../../hook/useAxiosPublic';
+import useAuth from '../../hook/useAuth';
 import useAxiosSecure from '../../hook/useAxiosSecure';
+import useCart from '../../hook/useCart';
 
 
 const CartItem = ({ item }) => {
     const {user} = useAuth();
-    const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
+    const [,refetch] = useCart();
     const { name, image, recipe, price, _id } = item;
     const handleAddToCart = () => {
-        console.log("button is clicked")
+        // console.log("button is clicked")
         if (user && user.email) {
             // console.log(user)
             // console.log(user.email, food)
@@ -23,18 +23,21 @@ const CartItem = ({ item }) => {
             }
 
             axiosSecure.post('/cart', cartItem)
-                .then(res => {
-                    console.log(res.data)
-                    // if (res.data.insertedId) {
-                    //     Swal.fire({
-                    //         icon: "success",
-                    //         title: `${name} Successfully Added`,
-                    //         showConfirmButton: false,
-                    //         timer: 1500
-                    //     });
-                    // }
+            .then(res => {
+                console.log(res.data)
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        icon: "success",
+                        title: `${name} Successfully Added`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
 
-                })
+                    //refetch the cart item
+                    refetch();
+                }
+
+            })
 
         }
         

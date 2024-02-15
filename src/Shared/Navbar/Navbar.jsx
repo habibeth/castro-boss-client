@@ -5,10 +5,13 @@ import './Navbar.css'
 import useAuth from '../../hook/useAuth';
 import Swal from "sweetalert2";
 import { IoCartOutline } from "react-icons/io5";
+import useCart from "../../hook/useCart";
 
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
+    const [cart] = useCart();
+    // console.log(cart);
 
 
     const handleLogout = () => {
@@ -43,12 +46,12 @@ const Navbar = () => {
             </>
         }
         <li>
-            <Link>
+            <Link to={`/dashboard/cart`}>
                 <button className="">
                     <div className="text-3xl relative">
                         <IoCartOutline />
                     </div>
-                    <div className="badge badge-secondary absolute top-0">1</div>
+                    <div className="badge badge-secondary absolute top-0">{cart.length}</div>
                 </button>
             </Link>
         </li>

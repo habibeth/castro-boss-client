@@ -27,10 +27,12 @@ const AuthProviders = ({children}) => {
 
 
     const updateUserInfo =(name, photo)=>{
+        setLoading(true)
         return updateProfile(auth.currentUser, {displayName: name, photoURL: photo});
     }
 
     const logOut=()=>{
+        setLoading(true)
         return signOut(auth);
     }
 
