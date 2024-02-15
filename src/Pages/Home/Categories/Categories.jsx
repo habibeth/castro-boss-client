@@ -12,6 +12,7 @@ import categoryImg1 from '../../../assets/home/slide1.jpg'
 import categoryImg2 from '../../../assets/home/slide2.jpg'
 import categoryImg3 from '../../../assets/home/slide3.jpg'
 import categoryImg4 from '../../../assets/home/slide4.jpg'
+import { Link } from "react-router-dom";
 
 const Categories = () => {
     return (
@@ -31,20 +32,28 @@ const Categories = () => {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <img src={categoryImg1} alt="" className="w-full" />
-                    <h2 className="uppercase text-3xl text-center font-medium absolute bottom-5 left-[30%] text-white">Salads</h2>
+                    <Link to="/shop/salad">
+                        <img src={categoryImg1} alt="" className="w-full" />
+                        <h2 className="uppercase text-3xl text-center font-medium absolute bottom-5 left-[30%] text-white">Salads</h2>
+                    </Link>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={categoryImg2} alt="" className="w-full" />
-                    <h2 className="uppercase text-3xl text-center font-medium absolute bottom-5 left-[30%] text-white">soups</h2>
+                    <Link to="/shop/soup">
+                        <img src={categoryImg2} alt="" className="w-full" />
+                        <h2 className="uppercase text-3xl text-center font-medium absolute bottom-5 left-[30%] text-white">soups</h2>
+                    </Link>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={categoryImg3} alt="" className="w-full" />
-                    <h2 className="uppercase text-3xl text-center font-medium absolute bottom-5 left-[30%] text-white">Pizzas</h2>
+                    <Link to="/shop/pizza">
+                        <img src={categoryImg3} alt="" className="w-full" />
+                        <h2 className="uppercase text-3xl text-center font-medium absolute bottom-5 left-[30%] text-white">Pizzas</h2>
+                    </Link>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={categoryImg4} alt="" className="w-full" />
-                    <h2 className="uppercase text-3xl text-center font-medium absolute bottom-5 left-[30%] text-white">Desserts</h2>
+                    <Link to="/shop/dessert">
+                        <img src={categoryImg4} alt="" className="w-full" />
+                        <h2 className="uppercase text-3xl text-center font-medium absolute bottom-5 left-[30%] text-white">Desserts</h2>
+                    </Link>
                 </SwiperSlide>
             </Swiper>
         </div>

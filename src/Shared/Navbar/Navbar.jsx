@@ -2,14 +2,60 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png"
 import { useEffect, useState } from "react";
 import './Navbar.css'
+import useAuth from '../../hook/useAuth';
+import Swal from "sweetalert2";
+import { IoCartOutline } from "react-icons/io5";
+
 
 const Navbar = () => {
+    const { user, logOut } = useAuth();
+
+
+    const handleLogout = () => {
+        // console.log("clicked on data")
+        logOut()
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(error => console.log(error))
+    }
+
     const navMenu = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/menu">Our Menu</Link></li>
         <li><Link to="/shop/salad">Our Shop</Link></li>
-        <li><Link to="/signUp">Register</Link></li>
+        
+        {
+            user ? <>
+                {/* <li><Link to="/login">Login</Link></li> */}
+                <li><Link to="/dashboard/userHome">Dashboard</Link></li>
+                <li><Link to="/">{user?.displayName}</Link></li>
+                <li><button onClick={handleLogout}>Logout</button></li>
+
+            </> : <>
+                <li><Link to="/login">Login</Link></li>
+            </>
+        }
+        <li>
+            <Link>
+                <button className="">
+                    <div className="text-3xl relative">
+                        <IoCartOutline />
+                    </div>
+                    <div className="badge badge-secondary absolute top-0">1</div>
+                </button>
+            </Link>
+        </li>
     </>
+    // console.log(user)
+
+
     const [navSize, setnavSize] = useState("10rem");
     const [navColor, setnavColor] = useState("transparent");
 

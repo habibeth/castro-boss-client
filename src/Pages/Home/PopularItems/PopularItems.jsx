@@ -4,8 +4,8 @@ import useMenu from "../../../hook/useMenu";
 
 
 const PopularItems = () => {
-    const [items] = useMenu();
-    const popularItems = items?.filter(item=> item.category === "popular")
+    const [menu] = useMenu();
+    const popularItems = menu?.filter(item=> item.category === "popular")
     // console.log(popularItems)
     return (
         <div className="max-w-6xl mx-auto my-10">

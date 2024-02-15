@@ -6,22 +6,22 @@ import 'react-tabs/style/react-tabs.css';
 import { useParams } from 'react-router-dom';
 import './OurShop.css'
 import useMenu from '../../../hook/useMenu';
-import CartItem from '../../../Shared/CartItem/CartItem';
+import ShopCard from '../ShopCard/ShopCard';
 
 const OurShop = () => {
-    const [items] = useMenu()
-    const categories = ['salad', 'pizza', 'soup', 'desserts', 'drinks'];
+    const [menu] = useMenu()
+    const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks'];
     const { category } = useParams();
     const initialIndex = categories.indexOf(category)
     const [selectedTab, setSelectedTab] = useState(initialIndex);
 
 
     
-    const drinks = items?.filter(item => item.category === "drinks");
-    const salad = items?.filter(item => item.category === "salad");
-    const soup = items?.filter(item => item.category === "soup");
-    const dessert = items?.filter(item => item.category === "dessert");
-    const pizza = items?.filter(item => item.category === "pizza");
+    const drinks = menu?.filter(item => item.category === "drinks");
+    const salad = menu?.filter(item => item.category === "salad");
+    const soup = menu?.filter(item => item.category === "soup");
+    const dessert = menu?.filter(item => item.category === "dessert");
+    const pizza = menu?.filter(item => item.category === "pizza");
 
     // console.log(salad)
 
@@ -40,19 +40,19 @@ const OurShop = () => {
                         <Tab>Drinks</Tab>
                     </TabList>
                     <TabPanel>
-                        <CartItem items={salad}></CartItem>
+                        <ShopCard items={salad}></ShopCard>
                     </TabPanel>
                     <TabPanel>
-                        <CartItem items={pizza}></CartItem>
+                        <ShopCard items={pizza}></ShopCard>
                     </TabPanel>
                     <TabPanel>
-                        <CartItem items={soup}></CartItem>
+                        <ShopCard items={soup}></ShopCard>
                     </TabPanel>
                     <TabPanel>
-                        <CartItem items={dessert}></CartItem>
+                        <ShopCard items={dessert}></ShopCard>
                     </TabPanel>
                     <TabPanel>
-                        <CartItem items={drinks}></CartItem>
+                        <ShopCard items={drinks}></ShopCard>
                     </TabPanel>
                 </Tabs>
             </div>

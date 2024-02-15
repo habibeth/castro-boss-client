@@ -11,12 +11,12 @@ import BannerTitle from "../../../components/BannerTitle";
 
 
 const OurMenu = () => {
-    const [items] = useMenu();
-    const offered = items?.filter(item=> item.category === "offered");
-    const salad = items?.filter(item=> item.category === "salad");
-    const soup = items?.filter(item=> item.category === "soup");
-    const dessert = items?.filter(item=> item.category === "dessert");
-    const pizza = items?.filter(item=> item.category === "pizza");
+    const [menu] = useMenu();
+    const offered = menu?.filter(item=> item.category === "offered");
+    const salad = menu?.filter(item=> item.category === "salad");
+    const soup = menu?.filter(item=> item.category === "soup");
+    const dessert = menu?.filter(item=> item.category === "dessert");
+    const pizza = menu?.filter(item=> item.category === "pizza");
     return (
         <div>
             <CategoryBanner bannerImg={offeredBanner} heading={"OUR MENU"} subHeading={"WOULD YOU LIKE TO TRY A DISH?"}></CategoryBanner>
@@ -25,13 +25,13 @@ const OurMenu = () => {
             <MenuCategory items={offered}></MenuCategory>
 
             {/* Desserts Items  */}
-            <MenuCategory heading={"DESSERTS"} subHeading={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} bannerImg={dessertBanner} items={dessert}></MenuCategory>
+            <MenuCategory heading={"dessert"} subHeading={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} bannerImg={dessertBanner} items={dessert}></MenuCategory>
             {/* Pizza items  */}
-            <MenuCategory heading={"PIZZA"} subHeading={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} bannerImg={pizzaBanner} items={pizza}></MenuCategory>
+            <MenuCategory heading={"pizza"} subHeading={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} bannerImg={pizzaBanner} items={pizza}></MenuCategory>
             {/* salad items  */}
-            <MenuCategory heading={"SALADS"} subHeading={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} bannerImg={saladBanner} items={salad}></MenuCategory>
+            <MenuCategory heading={"salad"} subHeading={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} bannerImg={saladBanner} items={salad}></MenuCategory>
             {/* salad items  */}
-            <MenuCategory heading={"SOUPS"} subHeading={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} bannerImg={soupBanner} items={soup}></MenuCategory>
+            <MenuCategory heading={"soup"} subHeading={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} bannerImg={soupBanner} items={soup}></MenuCategory>
         </div>
     );
 };

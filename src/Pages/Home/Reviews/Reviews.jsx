@@ -19,7 +19,7 @@ const Reviews = () => {
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
-    console.log(reviews)
+    // console.log(reviews)
     return (
         <div className="max-w-6xl mx-auto mb-24">
             <BannerTitle heading={"What Our Clients Say"} subHeading={"TESTIMONIALS"}></BannerTitle>
