@@ -3,13 +3,41 @@ import BannerTitle from "../../../components/BannerTitle";
 import useMenu from "../../../hook/useMenu";
 import { SlNote } from "react-icons/sl";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../hook/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 const ManageItems = () => {
-    const [menu] = useMenu();
+    const [menu, refetch] = useMenu();
+    const axiosSecure = useAxiosSecure()
 
-    const handleDeleteCart = (item) => {
+    const handleDeleteCart = async(item) => {
         console.log(item)
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to delete this Food!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async(result) => {
+            if (result.isConfirmed) {
+                const res = await axiosSecure.delete(`/menu/${item._id}`);
+                if (res.data.deletedCount > 0) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: `You have deleted ${item.name} Successfully.`,
+                        icon: "success"
+                    });
+
+                    //refetch item
+                    refetch()
+                }
+            }
+        });
+        
+
     }
     return (
         <div>

@@ -2,13 +2,16 @@ import { useForm } from 'react-hook-form';
 import signUpBg from '../../assets/others/authentication.png'
 import sideImage from '../../assets/others/authentication2.png'
 import useAuth from '../../hook/useAuth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from '../../Shared/SocialLogin/SocialLogin';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../hook/useAxiosPublic'
 
 const SignUp = () => {
-    const { createUser, updateUserInfo } = useAuth()
-    const { register, handleSubmit } = useForm();
+    const { createUser, updateUserInfo } = useAuth();
+    const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
+    const { register, handleSubmit, reset } = useForm();
     const onSubmit = (data) => {
         console.log(data)
         const email = data.email;
@@ -18,15 +21,25 @@ const SignUp = () => {
                 const user = result.user;
                 console.log(user)
                 updateUserInfo(data.name, data.photo)
-                .then(()=>{
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Your Account Created Successfully",
-                        showConfirmButton: false,
-                        timer: 1500
-                      });
-                })
+                    .then(async () => {
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        const res = await axiosPublic.post('/users', userInfo);
+                        if (res.data.insertedId) {
+                            reset();
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Your Account Created Successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+
+                            navigate('/')
+                        }
+                    })
             })
             .catch(err => console.log(err))
 

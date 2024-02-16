@@ -51,7 +51,7 @@ const Login = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className='btn bg-[#D1A054] text-white w-full'>Sign Up</button>
+                            <button className='btn bg-[#D1A054] text-white w-full'>Login</button>
                         </div>
 
                         <p className='text-[#D1A054] text-center'>New to our site? Please <Link className='font-bold' to="/signUp">Create an Account</Link></p>

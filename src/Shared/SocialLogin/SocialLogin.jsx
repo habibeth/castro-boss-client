@@ -1,22 +1,41 @@
 import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa6";
 import useAuth from "../../hook/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../hook/useAxiosPublic";
+import Swal from "sweetalert2";
 
 
 const SocialLogin = () => {
-    const {googleSignIn} = useAuth();
+    const { googleSignIn } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosPublic = useAxiosPublic()
     const from = location.state?.from?.pathname || "/";
-    const handleGoogleSignIn=()=>{
+    const handleGoogleSignIn = () => {
         // console.log("google sign in")
         googleSignIn()
-        .then(res=> {
-            const user = res.user;
-            console.log(user)
-            navigate(from, {replace: true})
-        })
-        .catch(error=> console.log(error))
+            .then(async(res) => {
+                const user = res.user;
+                if (res?.user) {
+                    const userInfo = {
+                        name: user?.displayName,
+                        email: user?.email
+                    }
+                    const res = await axiosPublic.post('/users', userInfo);
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Your Account Created Successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        navigate(from, { replace: true })
+                    }
+                }
+            })
+            .catch(error => console.log(error))
     }
     return (
         <div>
