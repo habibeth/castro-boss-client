@@ -5,9 +5,9 @@ import useCart from '../../hook/useCart';
 
 
 const CartItem = ({ item }) => {
-    const {user} = useAuth();
+    const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
-    const [,refetch] = useCart();
+    const [, refetch] = useCart();
     const { name, image, recipe, price, _id } = item;
     const handleAddToCart = () => {
         // console.log("button is clicked")
@@ -23,24 +23,24 @@ const CartItem = ({ item }) => {
             }
 
             axiosSecure.post('/cart', cartItem)
-            .then(res => {
-                console.log(res.data)
-                if (res.data.insertedId) {
-                    Swal.fire({
-                        icon: "success",
-                        title: `${name} Successfully Added`,
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                .then(res => {
+                    console.log(res.data)
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            icon: "success",
+                            title: `${name} Successfully Added`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
 
-                    //refetch the cart item
-                    refetch();
-                }
+                        //refetch the cart item
+                        refetch();
+                    }
 
-            })
+                })
 
         }
-        
+
 
     }
     return (
@@ -51,9 +51,9 @@ const CartItem = ({ item }) => {
                 <div className="card-body">
                     <h2 className="text-center text-2xl font-bold">{name}</h2>
                     <p className="text-center my-2">{recipe}</p>
-                    <div className="flex justify-center pb-10">
-                        <button onClick={() => handleAddToCart()} className="btn btn-outline mt-5 border-0 border-b-4 uppercase text-yellow-600 bg-slate-100">Add to cart</button>
-                    </div>
+                </div>
+                <div className="flex justify-center pb-10">
+                    <button onClick={() => handleAddToCart()} className="btn btn-outline mt-5 border-0 border-b-4 uppercase text-yellow-600 bg-slate-100">Add to cart</button>
                 </div>
             </div>
         </div>

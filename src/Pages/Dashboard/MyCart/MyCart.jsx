@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 const MyCart = () => {
     const [cart, refetch] = useCart();
     const axiosSecure = useAxiosSecure();
+    const cartPrice = cart.reduce((total, item)=> total + item.price, 0)
     const handleDeleteCart = (item) => {
         Swal.fire({
             title: "Are you sure?",
@@ -23,14 +24,15 @@ const MyCart = () => {
                     .then(res => {
                         console.log(res.data);
                         if (res.data.deletedCount > 0) {
-                              Swal.fire({
+                            Swal.fire({
                                 title: "Deleted!",
                                 text: `You have deleted ${item.name} Successfully.`,
                                 icon: "success"
-                              });
+                            });
 
-                              refetch()
-                        }                        
+                            //refetch item
+                            refetch()
+                        }
                     })
             }
         });
@@ -40,7 +42,12 @@ const MyCart = () => {
         <div className="bg-base-200 min-h-screen pb-20">
             <BannerTitle heading={"My Cart"} subHeading={"WANNA ADD MORE?"}></BannerTitle>
             <div className="mt-5 mx-20 bg-white">
-                <div className="overflow-x-auto">
+                <div className="flex justify-between px-10 py-10">
+                    <h2 className="uppercase text-3xl font-bold">Total Items: {cart.length}</h2>
+                    <h2 className="uppercase text-3xl font-bold">Total Price: {cartPrice}</h2>
+                    <button className="btn bg-[#D1A054] text-white">Pay</button>                    
+                </div>
+                <div className="overflow-x-auto px-10">
                     <table className="table">
                         {/* head */}
                         <thead className="bg-[#D1A054] text-white rounded-t-full">
