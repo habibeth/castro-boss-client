@@ -8,7 +8,7 @@ const useMenu = () => {
     const {data: menu = [], refetch} = useQuery({
         queryKey: ['menu'],
         queryFn: async()=>{
-            const result = await axiosPublic.get('/menu');
+            const result = await axiosPublic.get('/menu', {withCredentials: true});
             return result.data;
         }
     })

@@ -52,7 +52,14 @@ const AuthProviders = ({ children }) => {
                     setLoading(false)
                 })
             }
-            setLoading(false)
+            else{
+                axiosPublic.post('/logout', loggedUser, {withCredentials: true})
+                .then(res=>{
+                    console.log(res.data)
+                    setLoading(false);
+                })
+            }
+            
         })
         return () => {
             return unSubscribe();
