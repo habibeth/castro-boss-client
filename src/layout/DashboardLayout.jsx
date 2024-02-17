@@ -4,10 +4,13 @@ import { MdRateReview } from "react-icons/md";
 import { LuCalendarClock } from "react-icons/lu";
 import { IoMenu } from "react-icons/io5";
 import useCart from "../hook/useCart";
+import useAdmin from "../hook/useAdmin";
 
 const DashboardLayout = () => {
     const [cart] = useCart();
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
+    // const isAdmin = true;
+    // console.log(isAdmin)
     return (
         <div className="flex">
             <div className="w-64 bg-orange-500 min-h-screen pt-10">

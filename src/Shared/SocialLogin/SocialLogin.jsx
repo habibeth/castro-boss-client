@@ -14,25 +14,25 @@ const SocialLogin = () => {
     const handleGoogleSignIn = () => {
         // console.log("google sign in")
         googleSignIn()
-            .then(async(res) => {
+            .then(async (res) => {
                 const user = res.user;
-                if (res?.user) {
+                if (user) {
                     const userInfo = {
                         name: user?.displayName,
                         email: user?.email
                     }
                     const res = await axiosPublic.post('/users', userInfo);
-                    if (res.data.insertedId) {
+                    if (res.data) {
                         Swal.fire({
                             position: "top-end",
                             icon: "success",
-                            title: "Your Account Created Successfully",
+                            title: "Your Account Login Successfully",
                             showConfirmButton: false,
                             timer: 1500
                         });
 
-                        navigate(from, { replace: true })
                     }
+                    navigate(from, { replace: true })
                 }
             })
             .catch(error => console.log(error))

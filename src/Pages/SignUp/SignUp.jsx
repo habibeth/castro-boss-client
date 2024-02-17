@@ -13,7 +13,7 @@ const SignUp = () => {
     const navigate = useNavigate();
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = (data) => {
-        console.log(data)
+        // console.log(data)
         const email = data.email;
         const password = data.password;
         createUser(email, password)
@@ -22,23 +22,24 @@ const SignUp = () => {
                 console.log(user)
                 updateUserInfo(data.name, data.photo)
                     .then(async () => {
-                        const userInfo = {
-                            name: data.name,
-                            email: data.email
-                        }
-                        const res = await axiosPublic.post('/users', userInfo);
-                        if (res.data.insertedId) {
-                            reset();
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "Your Account Created Successfully",
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
+                        // const userInfo = {
+                        //     name: data.name,
+                        //     email: data.email
+                        // }
+                        // const res = await axiosPublic.post('/users', userInfo);
+                        // if (res.data.insertedId) {
+                        //     reset();
+                            
+                        //     Swal.fire({
+                        //         position: "top-end",
+                        //         icon: "success",
+                        //         title: "Your Account Created Successfully",
+                        //         showConfirmButton: false,
+                        //         timer: 1500
+                        //     });
 
-                            navigate('/')
-                        }
+                        //     navigate('/')
+                        // }
                     })
             })
             .catch(err => console.log(err))

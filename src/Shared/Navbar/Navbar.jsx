@@ -6,11 +6,13 @@ import useAuth from '../../hook/useAuth';
 import Swal from "sweetalert2";
 import { IoCartOutline } from "react-icons/io5";
 import useCart from "../../hook/useCart";
+import useAdmin from "../../hook/useAdmin";
 
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
     const [cart] = useCart();
+    const [isAdmin] = useAdmin()
     // console.log(cart);
 
 
@@ -33,11 +35,17 @@ const Navbar = () => {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/menu">Our Menu</Link></li>
         <li><Link to="/shop/salad">Our Shop</Link></li>
+        {
+            user && isAdmin && <li><Link to="/dashboard/adminHome">Dashboard</Link></li>
+        }
+        {
+            user && !isAdmin && <li><Link to="/dashboard/adminHome">Dashboard</Link></li>
+        }
         
         {
             user ? <>
                 {/* <li><Link to="/login">Login</Link></li> */}
-                <li><Link to="/dashboard/userHome">Dashboard</Link></li>
+                
                 <li><Link to="/">{user?.displayName}</Link></li>
                 <li><button onClick={handleLogout}>Logout</button></li>
 
@@ -59,12 +67,12 @@ const Navbar = () => {
     // console.log(user)
 
 
-    const [navSize, setnavSize] = useState("10rem");
-    const [navColor, setnavColor] = useState("transparent");
+    const [navSize, setNavSize] = useState("10rem");
+    const [navColor, setNavColor] = useState("transparent");
 
     const listenScrollEvent = () => {
-        window.scrollY > 10 ? setnavColor("rgba(51, 51, 50, 0.5)") : setnavColor("rgba(51, 51, 50, 0.5)");
-        window.scrollY > 10 ? setnavSize("5rem") : setnavSize("5rem");
+        window.scrollY > 10 ? setNavColor("rgba(51, 51, 50, 0.5)") : setNavColor("rgba(51, 51, 50, 0.5)");
+        window.scrollY > 10 ? setNavSize("5rem") : setNavSize("5rem");
     };
     useEffect(() => {
         window.addEventListener("scroll", listenScrollEvent);

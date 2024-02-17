@@ -24,13 +24,13 @@ const AllUsers = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, Admin User!"
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const res = await axiosSecure.patch(`/users/admin/${user._id}`);
-                if (res.data.deletedCount > 0) {
+                if (res.data.modifiedCount > 0) {
                     Swal.fire({
-                        title: "Deleted!",
+                        title: "Make Admin!",
                         text: `You have Make Admin ${user.name} Successfully.`,
                         icon: "success"
                     });
@@ -99,9 +99,11 @@ const AllUsers = () => {
                                         </td>
                                         <td>{user.email}</td>
                                         <th>
-                                            <button onClick={()=> handleMakeAdmin(user)} className="btn text-xl text-white bg-[#D1A054]">
+                                            {
+                                                user.role === "admin" ? "Admin" : <button onClick={() => handleMakeAdmin(user)} className="btn text-white bg-[#D1A054] hover:bg-red-600">
                                                 <FaUsers />
                                             </button>
+                                            }
                                         </th>
                                         <th>
                                             <button onClick={() => handleDeleteCart(user)} className="btn text-white bg-red-800 hover:bg-red-600">
